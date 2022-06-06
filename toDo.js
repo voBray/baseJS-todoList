@@ -28,12 +28,14 @@ function createTask(value){
     deleteButton.innerText = "Delete";
     deleteButton.classList.add("deleteButton");
     taskContainer.appendChild(deleteButton);
-    function deleteTask(){
-        taskList.removeChild(taskContainer);
-    };
     deleteButton.addEventListener('click', deleteTask);
 
     return taskContainer;
+};
+
+
+function deleteTask(event){
+    event.target.parentNode.remove();
 };
 
 function addTask(){
@@ -44,7 +46,6 @@ function addTask(){
         taskField.value = "";
     }
 };
-
 
 function removeAllTasks(){
     taskList.innerHTML = '';
