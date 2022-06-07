@@ -5,34 +5,33 @@ const removeAllButton = document.querySelector(".removeAllButton")
 
 
 function createTask(value){
-    const taskContainer = document.createElement("div");
-    taskContainer.classList.add("taskContainer");
-
+    
     const task = document.createElement("input");
     task.type = "text";
     task.value = value;
     task.setAttribute("readonly", "readonly");
     task.classList.add("task");
-    taskContainer.appendChild(task);
     
     const completedButton = document.createElement("button");
     completedButton.innerText = "Completed";
     completedButton.classList.add("completedButton");
-    taskContainer.appendChild(completedButton);
-    function completeTask(){
+    completedButton.addEventListener('click', () => {
         task.classList.add("completedTask");
-    };
-    completedButton.addEventListener('click', completeTask);
+    });
 
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "Delete";
     deleteButton.classList.add("deleteButton");
-    taskContainer.appendChild(deleteButton);
     deleteButton.addEventListener('click', deleteTask);
+
+    const taskContainer = document.createElement("div");
+    taskContainer.classList.add("taskContainer");
+    taskContainer.appendChild(task);
+    taskContainer.appendChild(completedButton);
+    taskContainer.appendChild(deleteButton);
 
     return taskContainer;
 };
-
 
 function deleteTask(event){
     event.target.parentNode.remove();
@@ -51,13 +50,5 @@ function removeAllTasks(){
     taskList.innerHTML = '';
 };
 
-
 addButton.addEventListener('click', addTask);
 removeAllButton.addEventListener('click', removeAllTasks);
-
-
-
-
-
-
-
